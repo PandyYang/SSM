@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;spring_day04&apos; to &apos;ssh_crm&apos;" description="Rename resource &apos;spring_day04&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/spring_day04" name="ssh_crm" stamp="1538538245039" updateReferences="true"/>
+</session>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<!-- <constant name="struts.objectFactory" value="spring" /> -->
+	
+	<!-- <constant name="struts.multipart.saveDir" value="C://bostmp"></constant> -->
+	
+	<package name="basicstruts2" extends="struts-default">
+		
+		<interceptors>
+		
+			<interceptor name="BOSLoginInterceptor" class="com.gyf.bos.web.interceptor.BOSLoginInterceptor">
+				<!--  排队 login方法拦截-->
+				<param name="excludeMethods">login</param>
+			</interceptor>
+			<!-- 配置拦截器栈 -->
+			<interceptor-stack name="mystack">
+				<!-- <interceptor-ref name="BOSLoginInterceptor"/> -->
+				<interceptor-ref name="defaultStack">
+					  <param name="exception.logEnabled">true</param>  
+  					  <param name="exception.logLevel">error</param>  
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 指定默认拦截栈 -->
+		<default-interceptor-ref name="mystack"/>
+		
+		<!-- 配置一个全局的result  -->
+		<global-results>
+			<result name="login">login.jsp</result>
+			<result name="unauthorizeUrl">unauthorize.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="unauthorizeUrl" exception="org.apache.shiro.authz.UnauthorizedException"/>
+			<exception-mapping result="unauthorizeUrl" exception="org.apache.shiro.authz.AuthorizationException"/>
+		</global-exception-mappings>
+		
+		<!-- 配置需要进行权限控制的页面访问的规则 -->
+		<action name="page_*_*">
+			<result name="success" type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+	
+		
+		<!-- <action name="login" class="com.gyf.bos.web.action.LoginAction" method="toLoginPage">
+			<result name="success">login.jsp</result>
+		</action>
+		 -->
+		
+		
+		<!-- 用户Action -->
+		<action name="userAction_*" class="com.gyf.bos.web.action.UserAction" method="{1}">
+			<result name="home">/WEB-INF/pages/common/index.jsp</result>
+			<result name="loginfailure">/login.jsp</result>
+			<result name="list">/WEB-INF/pages/admin/userlist.jsp</result>
+		</action>
+		
+		<!-- 取派员Action  -->
+		<action name="staffAction_*" class="com.gyf.bos.web.action.StaffAction" method="{1}">
+			<result name="list">/WEB-INF/pages/base/staff.jsp</result>
+		</action>
+		
+		
+		<!-- 区域Action  -->
+		<action name="regionAction_*" class="com.gyf.bos.web.action.RegionAction" method="{1}">
+			
+		</action>
+		
+		<!-- 子区域Action  -->
+		<action name="subareaAction_*" class="com.gyf.bos.web.action.SubareaAction" method="{1}">
+			<result name="list">/WEB-INF/pages/base/subarea.jsp</result>
+		</action>
+		
+		<!-- 定区Action  -->
+		<action name="decidedzoneAction_*" class="com.gyf.bos.web.action.DecidedZoneAction" method="{1}">
+			<result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
+		</action>
+		
+		<action name="noticeBillAction_*" class="com.gyf.bos.web.action.NoticeBillAction" method="{1}">
+			<result name="nbAdd">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+		</action>
+		
+
+		<action name="workOrderManageAction_*" class="workOrderManageAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/startransfer.jsp</result>
+		</action>
+		
+		<action name="roleAction_*" class="com.gyf.bos.web.action.RoleAction" method="{1}">
+			<result name="list">/WEB-INF/pages/admin/role.jsp</result>
+		</action>
+		
+		<action name="functionAction_*" class="com.gyf.bos.web.action.FunctionAction" method="{1}">
+			<result name="list">/WEB-INF/pages/admin/function.jsp</result>
+		</action>
+		<action name="processDefinitionAction_*" class="com.gyf.bos.web.action.ProcessDefinitionAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/processdefinition_list.jsp</result>
+			<result name="viewpng" type="stream">
+				<param name="contentType">image/png</param>
+				<param name="inputName">imgIS</param>
+			</result>
+		</action>
+		
+		<action name="processInstanceAction_*" class="processInstanceAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/processinstance.jsp</result>
+			<result name="showPng">/WEB-INF/pages/workflow/image.jsp</result>
+		</action>
+		
+		<action name="taskAction_*" class="taskAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/grouptask.jsp</result>
+			<result name="personalTaskList">/WEB-INF/pages/workflow/personaltask.jsp</result>
+			<result name="check">/WEB-INF/pages/workflow/check.jsp</result>
+		</action>
+	</package>
+
+
+</struts>

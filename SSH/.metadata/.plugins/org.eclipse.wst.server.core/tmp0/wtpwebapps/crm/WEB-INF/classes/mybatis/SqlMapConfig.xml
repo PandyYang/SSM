@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 别名
+		这是给实体类的别名
+		mybatis的全局配置文件 其中配置的是mapper
+	 -->
+	<typeAliases>
+		<package name="pandy.work.crm.pojo"/>
+	</typeAliases>
+
+</configuration>

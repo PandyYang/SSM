@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+		
+	<class name="pandy.test.domain.Customer" table="cst_customer">
+
+		<id name="cust_id" column="cust_id">
+		<!-- 主键生成策略 
+			记录每条记录录入时，主键的生成规则
+			identity：主键自增，由数据库来维护主键值，录入时不需要指定主键
+			increment（了解即可）：主键自增，由hibernate来维护，每次插入前会先查询表中id的最大值，+1作为新增的主键
+			sequence：Oracle中的主键生成策略
+			hilo：高低位算法（数据库中主键自增用到的算法）又hibernate维护，开发时不使用
+			native：hilo+sequence+identity 自动三选一策略
+			uuid：产生的随机字符串作为主键，主键的类型必须为String类型
+			assigned:自然主键生成策略，开发人员自己手动录入
+		-->
+		<generator class="identity"/>
+		</id>
+
+		<property name="cust_name" column="cust_name" type="string"/>
+		<property name="cust_industry" column="cust_industry" type="string"/>
+		<property name="cust_level" column="cust_level" type="string"/>
+		<property name="cust_linkman" column="cust_linkman" type="string"/>
+		<property name="cust_phone" column="cust_phone" type="string"/>
+		<property name="cust_mobile" column="cust_mobile" type="string"/>
+	</class>
+</hibernate-mapping>

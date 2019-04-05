@@ -1,0 +1,38 @@
+package pandy.work.crm.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import pandy.work.crm.pojo.BaseDict;
+import pandy.work.crm.service.BaseDictService;
+
+/**
+ * @author ASUS
+ *客户管理
+ */
+@Controller
+public class CustomerController {
+
+	@Autowired
+	private BaseDictService baseDictService;
+	
+	//入口
+	@RequestMapping(value="/customer/list")
+	public String list(Model model) {
+		//客户名称
+		List<BaseDict> formType = baseDictService.selectBaseDictListByCode("001");
+		//客户行业
+		List<BaseDict> industryType = baseDictService.selectBaseDictListByCode("002");
+		//客户级别
+		List<BaseDict> levelType = baseDictService.selectBaseDictListByCode("006");
+		model.addAttribute("formType", formType);
+		model.addAttribute("industryType", industryType);
+		model.addAttribute("levelType", levelType);
+		
+		return "customer";
+	}
+}

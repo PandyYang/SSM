@@ -1,0 +1,22 @@
+package test;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class test extends ActionSupport {
+	public test() {
+		super();
+		System.out.println("测试！");
+	}
+	
+	private String name;
+	public String execute() throws Exception {
+		System.out.println("name的参数值:"+name);
+		return "success";
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+}

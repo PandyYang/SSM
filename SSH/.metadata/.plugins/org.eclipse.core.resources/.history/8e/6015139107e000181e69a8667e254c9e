@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>springmvc-01</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <filter>
+  	<filter-name>characterEncodingFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf8</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>forceEncoding</param-name>
+  		<param-value>true</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>characterEncodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>classpath:applicationContext.xml</param-value>
+</context-param>
+<!--  配置spring的监听器-->
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+  
+  <!--  配置前端控制器
+  		DispatcherServlet是前段控制器设计模式的实现 提供spring web mvc的集中访问点
+  		而且负责职责的分派 与springioc容器无缝集成 从可以获得spring的所有好处 
+  		他的作用主要有
+  		1、文件上传解析，如果请求类型是multipart将通过MultipartResolver进行文件上传解析；
+
+		2、通过HandlerMapping，将请求映射到处理器（返回一个HandlerExecutionChain，它包括一个处理器、多个HandlerInterceptor拦截器）；
+
+		3、通过HandlerAdapter支持多种类型的处理器(HandlerExecutionChain中的处理器)；
+
+		4、通过ViewResolver解析逻辑视图名到具体视图实现；
+
+		5、本地化解析；
+
+		6、渲染具体的视图等；
+
+		7、如果执行过程中遇到异常将交给HandlerExceptionResolver来解析。
+  -->
+  <servlet>
+  	<servlet-name>springmvc</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<!--  上下文配置文件
+  		如果没有配置则默认找/WEB_INF/[servlet的名称]-servlet.xml文件
+  		所有的请求都拦截到了dispatcherServlet中进行解析 但是如果有js html
+  		css 等静态资源 需要使用restful进行处理
+  	-->
+  	<init-param>
+  	<!--  该参数配置了要转入spring中的配置文件-->
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>classpath:springmvc.xml</param-value>
+  	</init-param>
+  
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>springmvc</servlet-name>
+  	<!--  拦截规则
+  		1./* 拦截所有 jsp也拦截 这在struts中是放行的 还有js png css 不建议使用
+  		2.*.action *.do 拦截以do action结尾的请求   后台
+  		3./ 拦截所有（不包含jsp  但是包含.js .png .css）  前台
+  		  对静态资源放行
+  	-->
+  	<url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+</web-app>

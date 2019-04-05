@@ -1,0 +1,10 @@
+2019-01-28 23:00:43,115 [main] ERROR [com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine] - 无法创建文件，请检查配置信息！
+java.io.FileNotFoundException: C:\Users\斗鱼直播陈一发儿\Desktop\ssm整合及springBootDemo\ssm-plus\src\main\resources\mapper\CartMapper.xml (系统找不到指定的路径。)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine.writer(VelocityTemplateEngine.java:68)
+	at com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine.batchOutput(AbstractTemplateEngine.java:92)
+	at com.baomidou.mybatisplus.generator.AutoGenerator.execute(AutoGenerator.java:98)
+	at com.xzy.generator.MpGenerator_old.main(MpGenerator_old.java:165)

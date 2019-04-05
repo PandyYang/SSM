@@ -1,0 +1,9 @@
+package com.itheima.domain;
+/**
+* @author Pandy
+* @version 2018年11月21日 下午9:18:33
+*
+*/
+public class Order {
+
+}

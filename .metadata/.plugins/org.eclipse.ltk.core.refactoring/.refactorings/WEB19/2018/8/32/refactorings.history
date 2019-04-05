@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;DataSourceUtils.java&apos; to &apos;WEB19/src/pandy.test.demo.utils&apos;&#x0D;&#x0A;- Original project: &apos;WEB19&apos;&#x0D;&#x0A;- Destination element: &apos;WEB19/src/pandy.test.demo.utils&apos;&#x0D;&#x0A;- Original element: &apos;pandy.test.demo.utils.DataSourceUtils.java&apos;" description="Copy compilation unit" destination="/src&lt;pandy.test.demo.utils" element1="/src&lt;pandy.test.demo.utils{DataSourceUtils.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1533439142535" units="1" version="1.0"/>
+</session>

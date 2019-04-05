@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;pandy.test.a_jdbc&apos; to &apos;pandy.test.a_jdbctemplate&apos;&#x0D;&#x0A;- Original project: &apos;spring_day03&apos;&#x0D;&#x0A;- Original element: &apos;spring_day03/src/pandy.test.a_jdbc&apos;&#x0D;&#x0A;- Renamed element: &apos;spring_day03/src/pandy.test.a_jdbctemplate&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;pandy.test.a_jdbc&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;pandy.test.a_jdbc" name="pandy.test.a_jdbctemplate" qualified="false" references="true" stamp="1538270819957" textual="false" version="1.0"/>
+</session>

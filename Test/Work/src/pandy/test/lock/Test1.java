@@ -1,0 +1,15 @@
+package pandy.test.lock;
+
+public class Test1 {
+	public static void main(String[] args) {
+		for(int i=0;i<10;i++) {
+			System.out.println("´òÓ¡"+i);
+			try {
+				Thread.sleep(2000);//Ïß³ÌË¯Ãß2Ãë
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

@@ -1,0 +1,79 @@
+package pandy.test.a_ognl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Test;
+
+
+import ognl.Ognl;
+import ognl.OgnlContext;
+import ognl.OgnlException;
+import pandy.test.bean.User;
+
+//展示ognl 的语法
+public class Demo {
+	@Test
+	//取出root中的属性值
+	public void fun1() throws OgnlException {
+		//准备OGNLContext
+			//准备Root
+			User rootUser= new User("tom",18);
+			//准备Context
+			Map<String,User> context = new HashMap<String, User>();
+			context.put("user1", new User("jack",18));
+			context.put("user2", new User("rose",12));
+		OgnlContext oc = new OgnlContext();
+		oc.setRoot(rootUser);
+		oc.setValues(context);
+		//书写OGNL
+			String name = (String) Ognl.getValue("name", oc,oc.getRoot());
+			Integer age = (Integer) Ognl.getValue("age", oc,oc.getRoot());
+			System.out.println(name);
+			System.out.println(age);
+			
+	}	
+	@Test
+	//取出context中的属性值
+	public void fun2() throws OgnlException {
+		//准备OGNLContext
+		//准备Root
+		User rootUser= new User("tom",18);
+		//准备Context
+		Map<String,User> context = new HashMap<String, User>();
+		context.put("user1", new User("jack",18));
+		context.put("user2", new User("rose",12));
+		OgnlContext oc = new OgnlContext();
+		oc.setRoot(rootUser);
+		oc.setValues(context);
+		//书写OGNL
+		String name = (String) Ognl.getValue("#user1.name", oc,oc.getRoot());
+		String name2 = (String) Ognl.getValue("#user2.name", oc,oc.getRoot());
+		Integer age = (Integer) Ognl.getValue("#user1.age", oc,oc.getRoot());
+		Integer age2 = (Integer) Ognl.getValue("#user2.age", oc,oc.getRoot());
+		System.out.println(name);
+		System.out.println(age);
+		System.out.println(name2);
+		System.out.println(age2);
+	}
+		@Test
+		//为属性赋值
+		public void fun3() throws OgnlException {
+			//准备OGNLContext
+			//准备Root
+			User rootUser= new User("tom",18);
+			//准备Context
+			Map<String,User> context = new HashMap<String, User>();
+			context.put("user1", new User("jack",18));
+			context.put("user2", new User("rose",12));
+			OgnlContext oc = new OgnlContext();
+			oc.setRoot(rootUser);
+			oc.setValues(context);
+			//书写OGNL
+			Ognl.getValue("name='pandy'", oc,oc.getRoot());
+			String name = (String) Ognl.getValue("name", oc,oc.getRoot());
+			String name2 = (String) Ognl.getValue("#user1.name='lsj',#user1.name", oc, oc.getRoot());
+			System.out.println(name);
+			System.out.println(name2);;
+	}	
+}

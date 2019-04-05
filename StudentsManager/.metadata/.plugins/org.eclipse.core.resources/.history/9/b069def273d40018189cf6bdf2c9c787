@@ -1,0 +1,8 @@
+package pandy.work.bos.dao;
+
+import pandy.test.bos.domain.User;
+import pandy.work.bos.dao.base.IBaseDao;
+
+public interface IUserDao extends IBaseDao<User> {
+
+}

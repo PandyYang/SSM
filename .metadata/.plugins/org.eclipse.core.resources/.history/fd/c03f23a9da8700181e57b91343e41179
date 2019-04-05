@@ -1,0 +1,31 @@
+package DemoTest;
+
+public class Demo2 {
+	public static void main(String[] args) {
+		
+		Person p1 = new Person(22,"Pandy");
+		p1.showInfo();
+	}
+
+}
+
+class Person{
+	
+	//成员变量
+	int age;
+	String name;
+	
+	public Person(int age,String name) {
+		
+		//可读性不好 加上this之后
+		this.age=age;
+		this.name=name;
+		
+	}
+	//显示人名字
+	public void showInfo() {
+		
+		System.out.print("人名是："+name);
+	}
+	
+}

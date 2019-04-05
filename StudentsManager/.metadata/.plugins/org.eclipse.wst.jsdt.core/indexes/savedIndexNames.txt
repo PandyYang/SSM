@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+D:\oxygen\StudentsManager\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2738002040.index
+834598038.index
+864158970.index
+644800838.index
+2223166748.index
+2857521494.index
+2988517659.index
+612738547.index

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	
+	<!-- i18n:国际化 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- 指定访问action时的后缀名
+		加上之后再HelloAction之后加上.ation还是可以访问
+		但是如果将这个值改成do,那么访问的话只能改为HelloAction之后加上.do访问
+	 -->
+	<constant name="struts.action.extension" value="do"></constant>
+	
+	<!-- 指定struts2是否已开发模式运行
+			1.加载主配置。（热部署，不需要重启就能生效）
+			2.提供更多的错误信息输出，方便开发时的调试
+	 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- package:将action配置封装，就是可以在package中配置很多的action
+		name属性：给包起名字，起到标识作用，随便起，不能其他包名重复。
+		namespace属性：给action的访问路径中定义一个命名空间。
+		extends属性：继承一个指定包（必选）
+		abstract属性：包是否是抽象的，标识性属性，标识该包不能独立运行，专门被继承
+	 -->
+
+	<package name="hello" namespace="/hello" extends="struts-default">
+		
+		<!--action元素，配置action类
+			name属性：决定了action访问资源名
+			class属性：action类的完整类名
+			method属性：指定调用action中的哪个方法来处理请求
+		  -->
+		<action name="HelloAction" class="pandy.test.a_hello.HelloAction" method="hello">
+			
+			<!--  在HelloAction中，在执行完打印hello world 之后
+				  return 了success 在配置文件中  会跳转到hello.jsp文件之中
+			-->
+			<!-- result元素：结果配置
+					name属性：是标识结果处理的名称，与action方法的返回值对应
+					type属性：指定调用哪一个result类来处理结果,默认使用转发
+			 		标签体：填写页面的相对路径
+			 -->
+			<result name="success" type="">/hello.jsp</result>
+		</action>
+	</package>
+	<!-- 引入src之外的其他配置文件，例如某些包中的配置文件 -->
+	<include file="pandy/test/b_dynamic/struts.xml"></include>
+	<include file="pandy/test/c_default/struts.xml"></include>
+	<include file="pandy/test/e_test/struts.xml"></include>
+</struts>

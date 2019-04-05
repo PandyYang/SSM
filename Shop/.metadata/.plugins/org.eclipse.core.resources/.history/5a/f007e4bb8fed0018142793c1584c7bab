@@ -1,0 +1,9 @@
+package com.itheima.domain;
+/**
+* @author Pandy
+* @version 2018年11月21日 下午9:13:06
+*
+*/
+public class OrderItem {
+
+}

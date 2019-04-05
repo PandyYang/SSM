@@ -1,0 +1,9 @@
+package com.pandy.web.Dao;
+/**
+* @author Pandy
+* @version 2018年11月15日 下午10:07:14
+*
+*/
+public class ProductDao {
+
+}

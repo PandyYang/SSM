@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<!--  
+		当指定下面的语句的时候  struts会将bean转发给spring来创建 装配以及注入
+		struts-plugin中已经有下面的语句  所以注释掉是无所谓的
+		<constant name="struts.objectFactory" value="spring"/>
+	 -->
+	<package name="basicstruts2" extends="struts-default">
+		<!-- 需要进行权限控制的页面访问
+			通常还有class  和  method struts-default文件中有默认的action
+		 -->
+		<action name="page_*_*">
+			<!--  result没有写name默认就是success
+				通过访问action跳转的方式进行访问 web-inf下面的文件是受保护的
+				
+			-->
+			<result type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+	</package>
+</struts>

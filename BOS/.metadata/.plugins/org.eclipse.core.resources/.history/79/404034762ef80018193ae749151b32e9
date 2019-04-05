@@ -1,0 +1,52 @@
+package com.itheima.bos.service.impl;
+
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.itheima.bos.dao.ISubareaDao;
+import com.itheima.bos.domain.Subarea;
+import com.itheima.bos.service.ISubareaService;
+import com.itheima.bos.utils.PageBean;
+@Service
+@Transactional
+public class SubareaServiceImpl implements ISubareaService {
+	@Autowired
+	private ISubareaDao subareaDao;
+	@Override
+	public void save(Subarea model) {
+		// TODO Auto-generated method stub
+		subareaDao.save(model);
+	}
+	/*
+	 * 分页查询
+	 * */
+	@Override
+	public void pageQuery(PageBean pageBean) {
+		// TODO Auto-generated method stub
+		subareaDao.pageQuery(pageBean);
+	}
+	@Override
+	public List<Subarea> findAll() {
+		// TODO Auto-generated method stub
+		return subareaDao.findAll();
+	}
+	/*
+	 * 获取未关联的定区的分区
+	 * */
+	@Override
+	public List<Subarea> findListNotAssociation() {
+		// TODO Auto-generated method stub
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Subarea.class);
+		//添加过滤条件 希望查询到decidedzone = null 分区属性中有一个定区的属性 如果没有这个字段说明定区是空
+		
+		detachedCriteria.add(Restrictions.isNull("decidedzone"));
+		subareaDao.findByCriteria(detachedCriteria);
+		return null;
+	}
+	
+}

@@ -1,0 +1,10 @@
+<classpath>
+  <container id="springmvc-mybatis!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/oxygen/SSH/springmvc-mybatis/WebContent/WEB-INF/lib/spring-context-4.1.3.RELEASE.jar">
+      <source-attachment-path>F:/Java/提高/(13)SpringMVC（74-75天）/springmvc_day01/springmvc/01.参考资料/jar包/源码包/spring-context-4.1.3.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="D:/oxygen/SSH/springmvc-mybatis/WebContent/WEB-INF/lib/aopalliance-1.0.jar">
+      <source-attachment-path>F:/Java/提高/(13)SpringMVC（74-75天）/springmvc_day01/springmvc/01.参考资料/jar包/springmvc和mybatis整合/org</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

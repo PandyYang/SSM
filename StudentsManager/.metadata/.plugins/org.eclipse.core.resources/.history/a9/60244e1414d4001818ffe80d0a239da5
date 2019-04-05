@@ -1,0 +1,40 @@
+package pandy.work.bos.dao.base.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+import pandy.work.bos.dao.base.IBaseDao;
+
+public class BaseDaoImpl<T> implements IBaseDao<T> {
+
+	@Override
+	public void save(T entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete(T entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(T entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public T findById(Serializable id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<T> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

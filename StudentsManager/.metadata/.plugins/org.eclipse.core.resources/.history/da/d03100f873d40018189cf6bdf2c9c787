@@ -1,0 +1,5 @@
+package pandy.work.bos.service;
+
+public interface IUserService {
+
+}

@@ -1,0 +1,29 @@
+package com.pandy.service;
+
+import java.util.List;
+
+import com.pandy.dao.ProductDao;
+import com.pandy.domain.Product;
+
+/**
+* @author Pandy
+* @version 2018年11月15日 下午10:02:00
+*
+*/
+public class ProductService {
+	ProductDao dao = new ProductDao();
+	//获得热门的商品
+	public List<Product> findHotProductList() {
+		// TODO Auto-generated method stub1
+		
+		return dao.findHotProductList();
+		
+	}
+	//获得最新商品
+	public List<Product> findNewProductList() {
+		// TODO Auto-generated method stub
+		return dao.findNewProductList();
+		
+	}
+	
+}

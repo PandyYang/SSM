@@ -1,0 +1,7 @@
+#Tomcat publish data
+#Wed Dec 05 16:51:12 CST 2018
+org.eclipse.jst.j2ee.server\:bos-domain=WEB-INF/lib/bos-domain-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.j2ee.server\:bos-dao=WEB-INF/lib/bos-dao-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.j2ee.server\:bos-service=WEB-INF/lib/bos-service-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.j2ee.server\:bos-utils=WEB-INF/lib/bos-utils-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\ASUS\\.m2\\repository\\org\\springframework\\spring-web\\4.2.4.RELEASE\\spring-web-4.2.4.RELEASE.jar=WEB-INF/lib/spring-web-4.2.4.RELEASE.jar

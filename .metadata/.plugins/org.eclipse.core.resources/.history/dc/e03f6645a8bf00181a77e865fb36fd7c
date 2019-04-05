@@ -1,0 +1,28 @@
+package pandy.test.c_param;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.util.ValueStack;
+
+import pandy.test.bean.User;
+
+public class Demo2Action extends ActionSupport{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private User u = new User();
+
+	@Override
+	public String execute() throws Exception {
+		//1.压入栈顶
+		//获得值栈
+		ValueStack vs = ActionContext.getContext().getValueStack();
+		//将u压入栈顶
+		vs.push(u);
+		System.out.println(u);
+		return SUCCESS;
+	}
+	
+	
+}

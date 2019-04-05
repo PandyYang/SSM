@@ -1,0 +1,64 @@
+package pandy.test.demo.utils;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+public class DataSourceUtils {
+
+		//获得Connection ----从连接池中获取
+	private static ComboPooledDataSource dataSource = new ComboPooledDataSource();
+	
+	
+	//创建一个ThrowLocal
+	
+	private static ThreadLocal<Connection> tL = new ThreadLocal<Connection>();
+	
+	
+	//开启事务
+/*	public static void startTransction() throws SQLException {
+		
+		Connection conn = getCurrentConnection();
+		conn.setAutoCommit(false);
+	}
+	*/
+	public static void startTransction() throws SQLException {
+		// TODO Auto-generated method stub
+		Connection conn = getCurrentConnection();
+		conn.setAutoCommit(false);
+	}
+
+	
+	
+	public static Connection getCurrentConnection() throws SQLException {
+		//从ThreadLocal寻找当前线程是否有对应的Connection
+		Connection conn = tL.get();
+		if (conn==null) {
+			//获得一个新的connection
+			conn = getConnection();
+			//将新的connection资源绑定到ThreadLocal（map）上
+			tL.set(conn);
+			
+		}
+		return conn;
+	}
+	
+	
+	public static Connection  getConnection() throws SQLException {
+		return dataSource.getConnection();
+	
+	
+	
+	}
+
+
+
+
+
+
+
+
+	
+
+
+}

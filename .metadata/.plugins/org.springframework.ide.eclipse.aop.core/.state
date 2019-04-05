@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="ssm-demo"/>
+<aop-project name="jeebase-consumer"/>
+<aop-project name="jeebase-service"/>
+<aop-project name="jeebase-web"/>
+</aop-reference-model>

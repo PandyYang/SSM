@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd ">
+<!--指定扫描pandy.text.bean包下的所有注解
+	如果给的包下面还有子包  那么就会接着往下扫描
+ -->
+<context:component-scan base-package="pandy.test.bean"></context:component-scan>
+<bean name="car2" class="pandy.test.bean.Car">
+	<property name="name" value="布加迪威龙"></property>
+	<property name="color" value="red"></property>
+</bean>
+
+</beans>

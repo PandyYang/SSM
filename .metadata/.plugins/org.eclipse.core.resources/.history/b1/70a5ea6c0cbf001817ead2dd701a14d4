@@ -1,0 +1,23 @@
+package pandy.test.a_ognl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Test;
+
+import pandy.test.bean.User;
+
+//展示ognl 的语法
+public class Demo {
+	@Test
+	public void fun1() {
+		//准备OGNLContext
+			//准备Root
+			User rootUser= new User("tom",18);
+			//准备Context
+			Map<String,User> context = new HashMap<String, User>();
+			context.put("user1", new User("jack",18));
+			context.put("user2", new User("rose",18));
+		//书写OGNL
+	}	
+}

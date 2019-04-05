@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="0" key="CommitDialog.location.y"/>
+	<item value="0" key="CommitDialog.location.x"/>
+	<item value="500" key="CommitDialog.weights.0"/>
+	<item value="590" key="RevertDialog.location.x"/>
+	<item value="500" key="CommitDialog.weights.1"/>
+	<item value="" key="DirectorySelectionPage.lastParent_svn://pandy/bos32"/>
+	<item value="0" key="RevertDialog.location.y"/>
+	<item value="1030" key="CommitDialog.size.y"/>
+	<item value="1920" key="CommitDialog.size.x"/>
+	<item value="1028" key="RevertDialog.size.y"/>
+	<item value="741" key="RevertDialog.size.x"/>
+	<item value="" key="DirectorySelectionPage.lastParent_svn://pandy/bos32/code"/>
+	<item value="svn://pandy/bos32" key="RepositorySelectionPage.lastRepository"/>
+	<section name="CommitWizard">
+		<item value="500" key="VWeight2"/>
+		<item value="500" key="VWeight1"/>
+		<item value="false" key="ShowCompare"/>
+	</section>
+	<section name="NewLocationWizard">
+		<list key="ConfigurationWizardMainPage.STORE_URL_ID">
+			<item value="svn://Pandy/bos32/code"/>
+			<item value="svn://Pandy/bos32"/>
+		</list>
+	</section>
+</section>

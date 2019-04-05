@@ -1,0 +1,31 @@
+package pandy.test;
+
+public class Choose {
+	public void chooseArray(Integer[] in) {
+		int tem=0;
+		int num =0;
+		int upnum=0;
+		for(int i=0;i<in.length;i++) {
+			for(int j=i;j<in.length-1;j++) {
+				num++;
+				if(in[j+1]<in[j]) {
+					tem=in[j+1];
+					in[j+1]=in[j];
+					in[j]=tem;
+					upnum++;
+				}
+			}
+		}
+		for(int i=0;i<in.length;i++) {
+			System.out.print(in[i]);
+			if(i<in.length-1) {
+				System.out.print(",");
+			}
+		}
+	}
+	public static void main(String[] args) {
+		Choose ca = new Choose();
+		Integer in[] = {1,6,3,7,9,44,2,323};
+		ca.chooseArray(in);
+	}
+}

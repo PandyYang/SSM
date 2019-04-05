@@ -1,0 +1,50 @@
+package com.pandy.web.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.pandy.domain.Product;
+import com.pandy.service.ProductService;
+
+/**
+ * Servlet implementation class ProductInfoServlet
+ * 查询当前商品的相关数据
+ */
+public class ProductInfoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProductInfoServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//获得当前要查询商品的pid
+		String pid = request.getParameter("pid");
+		ProductService service = new ProductService();
+		Product product = service.findProductByPid(pid);
+		request.setAttribute("product", product);
+		//已经有带值跳转到相关的页面
+		request.getRequestDispatcher("/product_info.jsp").forward(request,response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

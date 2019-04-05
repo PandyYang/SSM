@@ -1,0 +1,14 @@
+package pandy.test.lock;
+
+public class Test1 {
+	int i = 0;
+	public void print() {
+		System.out.println("¥Ú”°£∫" + i);
+	}
+	public static void main(String[] args) {
+		for(int i=0;i<10;i++) {
+			Test1 t = new Test1();
+			t.print();
+		}
+	}
+}

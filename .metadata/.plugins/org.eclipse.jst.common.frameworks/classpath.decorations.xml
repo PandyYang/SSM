@@ -1,0 +1,30 @@
+<classpath>
+  <container id="struts2_day02!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/oxygen/struts2_day02/WebContent/WEB-INF/lib/xwork-core-2.3.24.jar">
+      <source-attachment-path>F:/Java/提高/(6)struts（39-42天）/struts2-day01/struts2-day01/resource/struts-2.3.24-all.zip</source-attachment-path>
+    </entry>
+    <entry id="D:/oxygen/struts2_day02/WebContent/WEB-INF/lib/struts2-core-2.3.24.jar">
+      <source-attachment-path>C:/Program Files/Java/jdk1.8.0_181/src.zip</source-attachment-path>
+    </entry>
+  </container>
+  <container id="struts2_day01!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/oxygen/struts2_day01/WebContent/WEB-INF/lib/xwork-core-2.3.24.jar">
+      <source-attachment-path>F:/Java/提高/(6)struts（39-42天）/struts2-day01/struts2-day01/resource/struts-2.3.24-all.zip</source-attachment-path>
+    </entry>
+  </container>
+  <container id="spring_day03!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/oxygen/spring_day03/WebContent/WEB-INF/lib/spring-jdbc-4.2.4.RELEASE.jar">
+      <source-attachment-path>F:/搜狗浏览器下载/spring-framework-4.2.4.RELEASE-docs.zip</source-attachment-path>
+    </entry>
+  </container>
+  <container id="ssh_crm!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/oxygen/ssh_crm/WebContent/WEB-INF/lib/spring-web-4.2.4.RELEASE.jar">
+      <source-attachment-path>F:/Java/提高/(7)spring（43-46天）/spring-day01/spring-day01/resource/spring-framework-4.2.4.RELEASE/libs/spring-web-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="struts2_day04!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/oxygen/struts2_day04/WebContent/WEB-INF/lib/xwork-core-2.3.24.jar">
+      <source-attachment-path>F:/Java/提高/(6)struts（39-42天）/struts2-day01/struts2-day01/resource/struts-2.3.24-all.zip</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  mapper标签中写sql语句
+	命名空间：user.findUserById order.findUserById
+	sqlid用于提取一些公共的片段 然后使用include标签进行指定
+	
+-->
+
+<mapper namespace="pandy.test.mybatis.mapper.UserMapper">
+
+	<sql id="selector">
+		select * from user
+	</sql>
+	<!--  通过id查询一个用户
+		resultType的属性需要你的名称和id对应 才能够自动映射
+	-->
+	<select id="findUserById" parameterType="Integer" resultType="pandy.test.mybatis.pojo.User">
+		select * from user where id = #{v}
+	</select>
+	
+	<!--  
+		%一般用于mysql的模糊查询
+		根据用户名模糊查询用户列表
+		#{} select * from user where id = ? 占位符 ? == '张三'
+		${} select * from user where username like '%${}%' 字符串拼接  
+		可以使用'%"#{任意字符}"%' 代替 '%${value}%'
+	-->
+	<select id="findUserByUsername" parameterType="String" resultType="pandy.test.mybatis.pojo.User">
+		select * from user where username like '%${value}%'
+	</select>
+	
+	<!--  
+		保存用于显示用户的保存id
+	-->
+	<insert id="saveUser" parameterType="pandy.test.mybatis.pojo.User">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into user(username,birthday,address,sex) values (#{username},#{birthday},#{address},#{sex})
+	</insert>
+	
+	<!--  更新用户-->
+	<update id="updateUserById" parameterType="pandy.test.mybatis.pojo.User">
+		update user
+		set username=#{username},sex=#{sex},birthday=#{birthday},address=#{address}
+		where id=#{id}
+	</update>
+	<!-- 根据id删除用户 -->
+	<delete id="deleteUserById" parameterType="pandy.test.mybatis.pojo.User">
+		delete from user where id = #{hahahah}
+	</delete>
+	
+	<!--  根据用户名模糊查询-->
+	<select id="findUserByQueryVo" parameterType="QueryVo" resultType="pandy.test.mybatis.pojo.User">
+		select * from user where username like "%"#{user.username}"%"
+	</select>
+	
+	<!--  查询用户条数-->
+	<select id="countUser" resultType="Integer">
+		select count(1) from user
+	</select>
+	
+	<!--  
+		根据性别和名字查询用户
+		使用if语句进行非空判断
+		使用where可以去掉第一个AND
+		前后
+	-->
+	<select id="selectUserBySexAndUsername" parameterType="User" resultType="User">
+		<include refid="selector"></include>
+		<where>
+			<if test="sex != null and sex !=''">
+			 and sex = #{sex}
+			</if>
+			<if test="username != null and username != ''">
+			  and username=#{username}
+			</if>
+		</where> 
+	</select>
+	
+	<!--  根据多个id查询用户信息-->
+	<select id="selectUserByIds" parameterType="QueryVo" resultType="User">
+		<include refid="selector" />
+		<where>
+			id in
+			<foreach collection="idsList" item="id" separator="," open="(" close=")">
+			#{id}
+			</foreach>
+		</where>
+	</select>
+</mapper>

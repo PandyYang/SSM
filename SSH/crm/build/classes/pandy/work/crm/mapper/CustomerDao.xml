@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pandy.work.crm.mapper.CustomerDao">
+	<!-- //总条数 -->
+	<!-- public Integer customerCountByQueryVo(QueryVo vo); private String custName; 
+		private String custSource; private String custIndustry; private String custLevel; -->
+	<select id="selectCustomerCountByQueryVo" parameterType="QueryVo"
+		resultType="Integer">
+		select count(1) from customer
+		<where>
+			<if test="custName != null and custName != ''">
+				cust_name like "%"#{custName}"%"
+			</if>
+			<if test="custSource != null and custSource != ''">
+				and cust_source = #{custSource}
+			</if>
+			<if test="custIndustry != null and custIndustry != ''">
+				and cust_industry = #{custIndustry}
+			</if>
+			<if test="custLevel != null and custLevel != ''">
+				and cust_level = #{custLevel}
+			</if>
+		</where>
+	</select>
+	<!-- //结果集 -->
+	<!-- public List<Customer> selectCustomerListByQueryVo(QueryVo vo); -->
+	<select id="selectCustomerListByQueryVo" parameterType="QueryVo"
+		resultType="Customer">
+		select * from customer
+		<where>
+			<if test="custName != null and custName != ''">
+				cust_name like "%"#{custName}"%"
+			</if>
+			<if test="custSource != null and custSource != ''">
+				and cust_source = #{custSource}
+			</if>
+			<if test="custIndustry != null and custIndustry != ''">
+				and cust_industry = #{custIndustry}
+			</if>
+			<if test="custLevel != null and custLevel != ''">
+				and cust_level = #{custLevel}
+			</if>
+		</where>
+		limit #{startRow},#{size}
+	</select>
+<!-- 		//通过ID查询客户 -->
+<!-- 	public Customer selectCustomerById(Integer id); -->
+	<select id="selectCustomerById" parameterType="Integer"
+		resultType="Customer">
+		select * from customer
+		<where>
+			cust_id = #{id}
+		</where>
+	</select>
+	
+<!-- 		//修改客户通过ID -->
+<!-- 	public void updateCustomerById(Customer customer); -->
+	<update id="updateCustomerById" parameterType="Customer">
+		update customer 
+		<set>
+			<if test="cust_name != null">
+				cust_name = #{cust_name},
+			</if>
+			<if test="cust_linkman != null">
+				cust_linkman = #{cust_linkman}
+			</if>
+		</set>
+		<where>
+			cust_id = #{cust_id}
+		</where>
+	</update>
+		
+<!-- 	//通过ID 删除客户 -->
+<!-- 	public void deleteCustomerById(Integer id); -->
+		<delete id="deleteCustomerById" parameterType="Integer">
+			delete from customer where cust_id = #{value}
+		</delete>
+</mapper>
+
+<!-- <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pandy.work.crm.mapper.CustomerDao">
+    使用parameterType和resultType完成输入映射与输出映射
+    resultType与resultMap都显示的是一种查询的结果集与java对象之间的关系 处理查询结果集 映射到java对象 
+    resultMap表示将查询结果集中的列一一映射到bean对象的各个属性 映射的查询结果集中的列标签可以根据需要灵活变化
+       在映射关系中 还可以通过typeHandler设置实现查询结果值得类型和转换
+    resultType表示的是bean中的对象类 此时可以省略掉resultMap标签 但是必须确保查询结果集中的属性与bean对象类中的属性是
+    一一对应的 此时大小写不敏感但是存在限制
+	<select id="selectCustomerCountByQueryVo" parameterType="QueryVo" resultType="Integer">
+	select count(1) from customer
+	<where>
+	 空串在service进行过滤
+		<if test="custName != null and custName != ''">
+			cust_name like "%"#{custName}"%"
+		</if>
+	</where>
+	<where>
+		<if test="custSource != null and custSource != ''">
+			and cust_source = #{custSource}
+		</if>
+	</where>
+	<where>
+		<if test="custIndustry != null and custIndustry != ''">
+			and cust_industry = #{custIndustry}
+		</if>
+	</where>
+	<where>
+		<if test="custLevel != null and custLevel != ''">
+			and cust_level = #{custLevel}
+		</if>
+	</where>
+	
+	</select>
+	
+	
+	
+	
+	<select id="selectCustomerListByQueryVo" parameterType="QueryVo" resultType="Customer">
+	select count(*) from customer
+		<where>
+		 空串在service进行过滤
+			<if test="custName != null and custName != ''">
+				cust_name like "%"#{custName}"%"
+			</if>
+		</where>
+		<where>
+			<if test="custSource != null and custSource != ''">
+				and cust_source = #{custSource}
+			</if>
+		</where>
+		<where>
+			<if test="custIndustry != null and custIndustry != ''">
+				and cust_industry = #{custIndustry}
+			</if>
+		</where>
+		<where>
+			<if test="custLevel != null and custLevel != ''">
+				and cust_level = #{custLevel}
+			</if>
+		</where>
+	limit #{startRow},#{size}
+	</select>
+</mapper> -->
+
+

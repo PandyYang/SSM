@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 
+	在此配置文件中注册usermapper.xml文件
+ -->
+<configuration>
+	<properties resource="jdbc.properties"/>
+	<!-- 别名 包以其子包下所有类   头字母大小都行-->
+	<typeAliases>
+<!-- 		<typeAlias type="com.itheima.mybatis.pojo.User" alias="User"/>
+			上面的是方式一
+			方式二 是下面的自动扫描 会将java类的类名作为类的类别名
+			那么user order就会自动的获取到pojo的完整的路径
+ -->
+		<package name="pandy.test.mybatis.pojo"/>
+	</typeAliases>
+	
+	<!-- 和spring整合后 environments配置将废除
+		这个下面的参数中写的是cybatis究竟 是什么区别和作用？
+	    -->
+	<environments default="development">
+		<environment id="development">
+			<!-- 使用jdbc事务管理
+				mybatis提供了三种数据源类型，分别是：	
+				POOLED 表示支持JDBC数据源连接池 
+				UNPOOLED 表示不支持数据源连接池
+			    JDNI 表示支持外部数据源连接池
+			-->
+			<transactionManager type="JDBC" />
+			<!-- 数据库连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- Mapper的位置  Mapper.xml 写Sql语句的文件的位置 -->
+	<mappers>
+		<!--  将同级次中的xml文件引入-->
+		<!-- <mapper resource="sqlmap/User.xml"/> -->
+		<!-- <mapper class="pandy.test.mybatis.mapper.UserMapper"></mapper> 
+			以上是告知映射文件方式1  就是一个个的配置
+			下面的是告知映射文件的方式2  自动扫描mapper中的接口和配置文件
+		-->
+		<package name="pandy.test.mybatis.mapper"/>
+	</mappers>
+</configuration>

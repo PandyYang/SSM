@@ -1,0 +1,26 @@
+package com.itheima.bos.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.itheima.bos.dao.IDecidedzoneDao;
+import com.itheima.bos.domain.Decidedzone;
+import com.itheima.bos.service.IDecidedzoneService;
+@Service
+@Transactional
+public class DecidedzoneServiceImpl implements IDecidedzoneService {
+	@Autowired
+	private IDecidedzoneDao decidedzoneDao;
+	
+	/*
+	 * 添加定区 同时关联分区
+	 * */
+	
+	@Override
+	public void save(Decidedzone model, String[] subareaid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

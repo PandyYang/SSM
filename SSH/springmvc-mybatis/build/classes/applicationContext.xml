@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!--  
+		连接数据库的配置
+		将这些数据库的配置加入到mybatis工厂中 然后使用工厂中的sqlSession进行dao层的相关操作
+		然后在扫描接口所在包
+		然后进行事务的配置
+		然后开启注解
+		
+	-->
+	<!-- 数据库连接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="10" />
+		<property name="maxIdle" value="5" />
+	</bean>
+	
+	<!-- Mybatis的工厂
+		mybatis文件配置 扫描所有的mapper文件
+	 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 核心配置文件的位置 -->
+		<property name="configLocation" value="classpath:sqlMapConfig.xml"/>
+	</bean>
+
+
+	<!-- Mapper动态代理开发 
+		会扫描指定包下面的接口 然后创建各自的动态代理类
+		MapperScannerConfigurer的源码表示，他实现了BeanDefinitionRegistryPostProcessor接口
+		然后此接口是一个修改spring中已经定义的bean接口 他有一个postProcessBeanDefinitionRegisitry方法
+		这个方法会将对应的接口类型改造成MapperFactoryBean 这个bean的属性mapperinterface是元类型
+		其实分析他就是要分析MapperFactoryBean的实现原理
+		该bean继承自SqlSessionDaoSupport类 这个类继承自DaoSupport抽象类 这个抽象类实现了initializingbean接口
+		因此实例mapperfactorybean的时候 都会调用上面接口的afterpropertirsSet方法
+		mapperproxyfactory是通过jdk自带的proxy来实现动态代理的
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 接口所在基本包 -->
+		<property name="basePackage" value="pandy.test.springmvc.dao"/>
+	</bean>
+	
+	<!--  	注解事务-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!--  开启注解-->
+	<tx:annotation-driven/>
+</beans>

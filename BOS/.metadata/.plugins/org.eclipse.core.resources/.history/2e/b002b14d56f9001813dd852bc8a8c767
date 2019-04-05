@@ -1,0 +1,11 @@
+package com.itheima.webservice;
+
+import javax.jws.WebService;
+
+@WebService
+public class HelloService {
+	public String sayHello(String name) {
+		System.out.println("服务端的sayHello方法被调用");
+		return "hello" + name;
+	}
+}

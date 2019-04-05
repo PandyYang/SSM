@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 表示xml文档引用“自定义文档作为默认命名空间” -->
+<web-app xmlns="http://www.example.org/web-app_2_5" 
+			<!--表示是一个ccheme实例文档，就是被scheme文档约束的xml文档  -->
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			<!-- 用于确定当前xml文档使用到的scheme文档的位置，名称，路径是成对存在
+			于xmlns引用命名空间对应 -->
+			xsi:schemaLocation="http://www.example.org/web-app_2_5 web-app_2_5.xsd"
+			version="2.5">
+<servlet>
+	<servlet-name>helloServlet</servlet-name>
+	<servlet-class>xxxxxxxxx</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>HelloServelet</servlet-name>
+	<url-pattern>hello</url-pattern>
+</servlet-mapping>
+
+<welcome-file-list>
+	<welcome-file></welcome-file>
+	<welcome-file></welcome-file>
+	<welcome-file></welcome-file>
+</welcome-file-list>
+</web-app>

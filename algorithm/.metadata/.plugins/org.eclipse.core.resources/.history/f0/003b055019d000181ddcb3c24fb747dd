@@ -1,0 +1,10 @@
+package chapter1;
+
+public class TestMemoryCell {
+	public static void main(String[] args) {
+		MemoryCell m = new MemoryCell();
+		m.write("37");//这边无法写入  要求的是包装类型 基本数据类型和object不相容
+		String val = (String) m.read();
+		System.out.println("Contents are:"+val);
+	}
+}

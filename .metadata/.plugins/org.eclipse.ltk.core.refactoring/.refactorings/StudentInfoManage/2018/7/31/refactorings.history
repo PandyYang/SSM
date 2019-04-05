@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;pandy.test.model.GradeListServlet&apos; to &apos;Grade&apos;&#x0D;&#x0A;- Original project: &apos;StudentInfoManage&apos;&#x0D;&#x0A;- Original element: &apos;pandy.test.model.GradeListServlet&apos;&#x0D;&#x0A;- Renamed element: &apos;pandy.test.model.Grade&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;GradeListServlet&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;pandy.test.model{GradeListServlet.java[GradeListServlet" matchStrategy="1" name="Grade" qualified="false" references="true" similarDeclarations="false" stamp="1532825849501" textual="false" version="1.0"/>
+</session>

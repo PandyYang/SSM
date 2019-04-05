@@ -1,0 +1,9 @@
+package com.pandy.domain;
+/**
+* @author Pandy
+* @version 2018年11月15日 下午10:00:10
+*
+*/
+public class Category {
+
+}

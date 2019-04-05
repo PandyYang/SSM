@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Servlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>/Test</servlet-name>
+    <servlet-class>HelloForm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>/Test</servlet-name>
+    <url-pattern>/TestServlet</url-pattern>
+  </servlet-mapping>
+  
+ <!--
+ 	配置servlet的url与servlet之间的映射 
+ 	至于url的地址可以修改 但是类是固定不变的
+ 	在form的action中提交urlpattern只后就能通过这个映射找见这个servlet类
+ -->
+  <servlet>
+    <description></description>
+    <display-name>HelloForm</display-name>
+    <servlet-name>HelloForm</servlet-name>
+    <servlet-class>com.servlet.HelloForm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloForm</servlet-name>
+    <url-pattern>/helloForm</url-pattern>
+  </servlet-mapping>
+</web-app>

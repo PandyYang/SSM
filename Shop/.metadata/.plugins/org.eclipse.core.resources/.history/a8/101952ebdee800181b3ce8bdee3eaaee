@@ -1,0 +1,36 @@
+package com.pandy.domain;
+
+import java.util.Date;
+
+/**
+* @author Pandy
+* @version 2018年11月15日 下午9:45:01
+*
+*/
+public class Product {
+	/*
+	 * `pid` varchar(32) NOT NULL,
+  `pname` varchar(50) DEFAULT NULL,
+  `market_price` double DEFAULT NULL,
+  `shop_price` double DEFAULT NULL,
+  `pimage` varchar(200) DEFAULT NULL,
+  `pdate` date DEFAULT NULL,
+  `is_hot` int(11) DEFAULT NULL,
+  `pdesc` varchar(255) DEFAULT NULL,
+  `pflag` int(11) DEFAULT NULL,
+  `cid` varchar(32) DEFAULT NULL,
+	 * */
+	
+	private String pid;
+	private String pname;
+	private double market_price;
+	private double shop_price;
+	private String pimage;
+	private Date pdate;
+	private int is_hot;
+	private String pdesc;
+	private int pflag;
+	private Category category;
+	//private String cid;//表示主从关系 是category的外键 所以在这里创建主键的对象
+	
+}

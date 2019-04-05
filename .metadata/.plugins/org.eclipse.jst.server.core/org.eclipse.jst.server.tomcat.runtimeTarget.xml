@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<classpath>
+  <source-attachment entry="D:/tomcat/apache-tomcat-8.5.32/lib/jasper.jar" runtime-id="Apache Tomcat v8.5" source-attachment-path="D:/tomcat/apache-tomcat-8.5.32-src.zip">
+    <attribute name="source_encoding" value="UTF-8"/>
+  </source-attachment>
+</classpath>

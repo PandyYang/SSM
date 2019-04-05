@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;IStaffService.java&apos; to &apos;bos-service/src/main/java/com.itheima.bos.service&apos;&#x0D;&#x0A;- Original project: &apos;bos-service&apos;&#x0D;&#x0A;- Destination element: &apos;bos-service/src/main/java/com.itheima.bos.service&apos;&#x0D;&#x0A;- Original element: &apos;com.itheima.bos.web.action.IStaffService.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src\/main\/java&lt;com.itheima.bos.service" element1="/src\/main\/java&lt;com.itheima.bos.web.action{IStaffService.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1543625479940" units="1" version="1.0"/>
+</session>

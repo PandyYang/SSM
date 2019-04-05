@@ -1,0 +1,14 @@
+package com.itheima.bos.service.impl;
+
+import com.itheima.bos.domain.Decidedzone;
+import com.itheima.bos.service.IDecidedzoneService;
+
+public class DecidedzoneServiceImpl implements IDecidedzoneService {
+
+	@Override
+	public void save(Decidedzone model, String[] subareaid) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

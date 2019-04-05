@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Demo.java&apos; to &apos;Hibernate_day04/src/pandy.test.b_criteria&apos;&#x0D;&#x0A;- Original project: &apos;Hibernate_day04&apos;&#x0D;&#x0A;- Destination element: &apos;Hibernate_day04/src/pandy.test.b_criteria&apos;&#x0D;&#x0A;- Original element: &apos;pandy.test.b_criteria.Demo.java&apos;" description="Copy compilation unit" destination="/src&lt;pandy.test.b_criteria" element1="/src&lt;pandy.test.b_criteria{Demo.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1537190016996" units="1" version="1.0"/>
+</session>

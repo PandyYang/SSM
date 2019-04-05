@@ -1,0 +1,9 @@
+package com.pandy.domain;
+/**
+* @author Pandy
+* @version 2018年11月18日 下午3:27:52
+*
+*/
+public class PageBean {
+
+}

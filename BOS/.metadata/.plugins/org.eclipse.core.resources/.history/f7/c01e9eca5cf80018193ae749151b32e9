@@ -1,0 +1,70 @@
+package com.itheima.bos.dao.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.stereotype.Repository;
+
+import com.itheima.bos.dao.IDecidedzoneDao;
+import com.itheima.bos.dao.base.impl.BaseDaoImpl;
+import com.itheima.bos.domain.Decidedzone;
+import com.itheima.bos.utils.PageBean;
+@Repository
+public class DecidedzoneDaoImpl extends BaseDaoImpl<Decidedzone> implements IDecidedzoneDao {
+
+	@Override
+	public void save(Decidedzone entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete(Decidedzone entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(Decidedzone entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void saveOrUpdate(Decidedzone entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Decidedzone findById(Serializable id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Decidedzone> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void executeUpdate(String queryName, Object... objects) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void pageQuery(PageBean pageBean) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Decidedzone> findByCriteria(DetachedCriteria detachedCriteria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.itheima.webservice;
+
+public class HelloService {
+
+}

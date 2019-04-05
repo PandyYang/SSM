@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="pandy.test.domain">
+	<class name="Role" table="sys_role">
+
+		<id name="role_id">
+		<generator class="native"/>
+		</id>
+
+		<property name="role_name"/>
+		<property name="role_memo"/>
+	
+		
+	
+		<!--  集合，一对多关系，在配置文件中进行配置-->
+		<!--  
+			name属性：集合的属性名
+			column属性：填写外键的列名
+			class属性：与我关联的对象完整类名
+		-->
+		
+		<!-- 
+			inverse属性：性能优化，提高关系维护的性能
+			原则：无论怎么放弃总有一端要维护关系
+			一对多关系中：一的一方放弃，也只能一的一方放弃，多的一方不能放弃
+				true：为放弃关系
+			结论：将来在开发中，如果遇到多对多关系，一定要选择一方放弃维护关系
+			
+		
+		 -->
+		 
+		 
+		<set name="users" table="sys_user_role" inverse="true">
+			<key column="role_id"></key>
+			<many-to-many class="User" column="user_id"></many-to-many>
+		</set>
+ </class>
+</hibernate-mapping>

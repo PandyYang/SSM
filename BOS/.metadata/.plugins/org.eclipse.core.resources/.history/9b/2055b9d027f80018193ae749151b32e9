@@ -1,0 +1,111 @@
+package com.itheima.bos.web.action;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import com.itheima.bos.domain.Staff;
+import com.itheima.bos.service.IStaffService;
+import com.itheima.bos.utils.PageBean;
+import com.itheima.bos.web.action.base.BaseAction;
+
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+
+/**取派员管理
+ * @author ASUS
+ *
+ */
+@Controller
+@Scope("prototype")
+public class StaffAction extends BaseAction<Staff> {
+	@Autowired
+	private IStaffService staffService;
+	/*
+	 * 添加取派员
+	 * 
+	 * */
+	public String add() {
+		staffService.save(model);
+		return LIST;
+	}
+	/*
+	 * 分页查询方法 页面在点击提交的时候会通过配置文件找到以下的方法 并且传过来两个参数
+	 * 将参数交给pageBean
+	 * */
+	
+/*	//属性驱动 接受页面提交的分页参数
+	private int page;//当前页
+	private int rows;//显示条数
+*/	
+
+
+	public String pageQuery() throws IOException {
+		//创建离线条件查询对象 告知hibernate查询哪张表
+		/*DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Staff.class);
+		pageBean.setDetachedCriteria(detachedCriteria);*/
+		
+		staffService.pageQuery(pageBean);
+		this.java2Json(pageBean, new String[]{"currentPage","detachedCriteria","pageSize"});
+		return NONE;
+	}
+	
+	/*
+	 * 取派员批量删除
+	 *
+	 * */
+	//属性驱动 接受页面提交的ids参数
+	private String ids;
+	
+	public String getIds() {
+		return ids;
+	}
+
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+
+	public String deleteBatch() {
+		staffService.deleteBatch(ids);
+		
+		return LIST;
+	}
+	
+	/*
+	 * 修改取派员信息
+	 * 注意不能直接更新model对象 外键以及所有的值 是不允许进行更新的
+	 * c查询到去拍元然后将对应的值进行修改  而不可以直接对整个model进行修改
+	 * model中的有些属性是 页面中没有的字段 比如外键等等
+	 * */
+	public String edit() {
+		//查询数据库 根据id查询原始的数据
+		Staff staff = staffService.findById(model.getId());
+		//使用页面提交的数据进行覆盖
+		staff.setName(model.getName());
+		staff.setTelephone(model.getTelephone());
+		staff.setHaspda(model.getHaspda());
+		staff.setStandard(model.getStandard());
+		staff.setStation(model.getStation());
+		staffService.update(staff);
+		return LIST;
+	}
+	
+	
+	/*
+	 * 查询所有未删除的取派员 返回json数据
+	 * 
+	 * */
+	public String listajax() {
+		List<Staff> list = staffService.findListNotDelete();
+		//combobox只需要id和name 其他的在下面进行排除
+		this.java2Json(list, new String[] {});
+		return NONE;
+	}
+}

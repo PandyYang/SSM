@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--  设置别名-->
+	<typeAliases>
+		<!--  指定扫描包，会把包内所有的类都设置别名
+			别名的名称就是类名 大小写不敏感
+		-->
+		<package name="pandy.test.mybatis.pojo"/>
+	</typeAliases>
+	<!--  
+		关联bean文件 配置文件 和接口  语句 application中已经由spring接管处理这些
+		注意以下语句扫描的是Mapper的xml文件
+	-->
+	<mappers>
+		<package name="pandy.test.mybatis.mapper"/>
+	</mappers>
+	
+</configuration>

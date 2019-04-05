@@ -1,0 +1,9 @@
+package com.pandy.domain;
+/**
+* @author Pandy
+* @version 2018年11月15日 下午9:45:01
+*
+*/
+public class Product {
+
+}

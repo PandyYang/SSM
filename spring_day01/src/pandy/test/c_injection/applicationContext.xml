@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--  导入p名称空间 beans中间不能添加注释-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:p="http://www.springframework.org/schema/p" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+
+		 <!--set方式注入  -->
+		<bean name="user" class="pandy.test.bean.User">
+			<!--  为user对象中的name属性注入tom作为值-->
+			<property name="name" value="tom"></property>
+			<property name="age" value="18"></property>
+			<!--为car属性注入下方配置的car对象  -->
+			<property name="car" ref="car"></property>
+		</bean>
+		<!--  对象类型的注入:将car对象配置到容器中-->
+		<bean name="car" class="pandy.test.bean.Car">
+			<property name="name" value="lanbo"></property>
+			<property name="color" value="紫色"></property>
+		</bean>
+		
+		<!--  构造函数方法-->
+		<bean name="user2" class="pandy.test.bean.User">
+		<!--  name属性：构造函数的参数名
+				index属性：构造函数的参数索引
+				type属性：构造函数的参数类别
+		-->
+		<constructor-arg name="name" value="888" index="0" type="java.lang.Integer"></constructor-arg>
+		<constructor-arg name="car" ref="car" index="1"></constructor-arg>
+		</bean>
+		
+		
+		<!--  p名称空间注入
+			1.导入p名称空间
+			2.使用p:属性完成注入
+				|-值类型：p:属性名=“值”
+				|-对象类型：p:属性名-ref=“bean名称”
+		-->
+		<bean name="user3" class="pandy.test.bean.User" p:name="pandy" p:age="12" p:car-ref="car"></bean>
+
+		<!--spel注入  
+			
+		-->
+</beans>

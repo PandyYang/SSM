@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 配置动态方法调用的常量 
+		默认是关闭状态，要设置为true
+	-->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+	<package name="default" namespace="/default" extends="struts-default">
+	<!-- 找不到包下的action，会使Demo2Action作为默认的action请求-->
+	<default-action-ref name="Demo2Action"></default-action-ref>
+		<!-- 动态方法调用方式：通配符的方式
+			使用{1}取出第一个星号统配的内容
+		 -->
+		 <!-- method属性的默认值：execute 
+		 		result的name属性：success
+		 		result的type属性：dispater
+		 -->
+		<action name="Demo2Action" class="pandy.test.c_default.Demo2Action" method="execute">
+			<result name="success">/hello.jsp</result>
+		</action>
+		<!-- <action name="Demo1Action_delete" class="pandy.test.b_dynamic.Demo1Action"
+		 method="delete">
+			<result name=""></result>
+		</action>
+		<action name="Demo1Action_update" class="pandy.test.b_dynamic.Demo1Action"
+		 method="update">
+			<result name=""></result>
+		</action>
+		<action name="Demo1Action_find" class="pandy.test.b_dynamic.Demo1Action"
+		 method="find">
+			<result name=""></result>
+		</action>
+	 -->
+	</package>
+</struts>

@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//WebContent/json=UTF-8
+encoding//WebContent/json/admin.json=UTF-8
+encoding//WebContent/json/association_customer.json=UTF-8
+encoding//WebContent/json/association_subarea.json=UTF-8
+encoding//WebContent/json/combobox.json=UTF-8
+encoding//WebContent/json/decidedzone_subarea.json=UTF-8
+encoding//WebContent/json/menu.json=UTF-8
+encoding//WebContent/json/region.json=UTF-8
+encoding//WebContent/json/staff.json=UTF-8
+encoding//WebContent/json/stafftest.json=UTF-8
+encoding//WebContent/json/users.json=UTF-8
+encoding/<project>=UTF-8

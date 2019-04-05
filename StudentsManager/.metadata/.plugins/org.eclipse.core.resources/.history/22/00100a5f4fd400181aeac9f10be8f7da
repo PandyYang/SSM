@@ -1,0 +1,7 @@
+package pandy.work.bos.web.action;
+
+import pandy.work.bos.web.action.base.BaseAction;
+
+public class UserAction extends BaseAction<User> {
+
+}

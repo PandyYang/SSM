@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 加载jdbc属性文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+						
+	<!-- 数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${driverClass}"/>
+		<property name="jdbcUrl" value="${jdbcUrl}"/>
+		<property name="user" value="${user}"/>
+		<property name="password" value="${password}"/>
+	</bean>
+	
+	<!-- spring框架用于整合Hibernate的工厂bean -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 注入Hibernate相关的属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<!-- 注入Hibernate的映射文件 -->
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/gyf/bos/domain</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- hibernateTemplate -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>	
+	</bean>
+	
+	
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 组件扫描 -->
+
+	<context:component-scan base-package="com.gyf.bos.*"/>
+	<!-- 引入注解解析器 -->
+	<context:annotation-config />
+	<!-- 事务注解 -->
+	<tx:annotation-driven />
+
+
+	<!-- 配置远程服务的代理对象 -->
+	<bean id="customerService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<!-- 注入接口类型 -->
+		<property name="serviceInterface" value="com.gyf.crm.service.CustomerService"/>
+		<!-- 服务访问路径 -->
+		<property name="serviceUrl" value="http://localhost:8080/crm/remoting/customer"/>
+	</bean>
+	
+	<!-- 配置shiro的过滤器bean -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"></property>
+		<!-- 登录页面路径 -->
+		<property name="loginUrl" value="/login.jsp"/>
+		<!-- 登录成功后显示的路径 -->
+		<property name="successUrl" value="/index.jsp"></property>
+		<!-- 未授权的页面提示 -->
+		<property name="unauthorizedUrl" value="/unauthorize.jsp"></property>
+		<!-- url拦截规则  -->
+		<property name="filterChainDefinitions">
+			<value>
+				/css/** = anon
+				/images/** = anon
+				/js/** = anon
+				/userAction_login = anon
+				/validatecode.jsp* = anon
+				/* = authc
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="realm" class="com.gyf.bos.web.shiro.BOSRealm"></bean>
+
+	
+	<!-- 注册缓存管理器 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<!-- 注入ehcache配置文件 -->
+		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+	</bean>
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="realm"></property>
+		<!-- 注入缓存管理器 -->
+		<property name="cacheManager" ref="cacheManager"/>
+	</bean>
+	
+	<!-- 开启shiro注解 -->
+	<!-- 自动代理 -->
+ 	<bean id="defaultAdvisorAutoProxyCreator" 
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		>
+		<!-- 强制使用cglib为Action创建代理对象 -->
+		<property name="proxyTargetClass" value="true"></property>
+	</bean>
+	
+	<!-- 切面类 -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+	</bean> 
+	
+
+	<!-- <bean class="com.gyf.bos.web.action.StaffAction"/> -->
+	
+	
+	<!-- activiti配置 -->
+	<!-- 流程引擎配置对象 -->
+	<bean id="processEngineConfiguration"
+		 class="org.activiti.spring.SpringProcessEngineConfiguration">
+		 <property name="dataSource" ref="dataSource"/>
+		 <property name="transactionManager" ref="transactionManager"/>
+		 <property name="databaseSchemaUpdate"  value="true"/>
+	</bean>
+
+	<!-- 使用工厂创建流程引擎对象 -->
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration"/>
+	</bean>
+	
+	<!-- 使用这种方式来创建service的bean  -->
+	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/>
+	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService"/>
+	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"/>
+	<bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService"/>
+	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService"/>
+</beans>

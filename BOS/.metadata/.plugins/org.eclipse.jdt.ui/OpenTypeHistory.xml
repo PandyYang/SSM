@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=bos-utils/C:\/Users\/ASUS\/.m2\/repository\/org\/apache\/struts\/struts2-core\/2.3.24\/struts2-core-2.3.24.jar&lt;org.apache.struts2.dispatcher.ng.filter(StrutsPrepareAndExecuteFilter.class[StrutsPrepareAndExecuteFilter" modifiers="33" timestamp="1463372087837"/>
+<typeInfo handle="=bos-utils/C:\/Users\/ASUS\/.m2\/repository\/org\/springframework\/spring-web\/4.2.4.RELEASE\/spring-web-4.2.4.RELEASE.jar&lt;org.springframework.web.context(ContextLoader.class[ContextLoader" modifiers="33" timestamp="1463371962740"/>
+<typeInfo handle="=bos-utils/C:\/Users\/ASUS\/.m2\/repository\/org\/springframework\/spring-web\/4.2.4.RELEASE\/spring-web-4.2.4.RELEASE.jar&lt;org.springframework.web.context(ContextLoaderListener.class[ContextLoaderListener" modifiers="33" timestamp="1463371962740"/>
+<typeInfo handle="=bos-utils/C:\/Users\/ASUS\/.m2\/repository\/org\/springframework\/spring-orm\/4.2.4.RELEASE\/spring-orm-4.2.4.RELEASE.jar&lt;org.springframework.orm.hibernate5.support(OpenSessionInViewFilter.class[OpenSessionInViewFilter" modifiers="33" timestamp="1463371923728"/>
+<typeInfo handle="=bos-utils/C:\/Users\/ASUS\/.m2\/repository\/c3p0\/c3p0\/0.9.1.2\/c3p0-0.9.1.2.jar&lt;com.mchange.v2.c3p0(ComboPooledDataSource.class[ComboPooledDataSource" modifiers="49" timestamp="1463372072414"/>
+<typeInfo handle="=bos-web/C:\/Users\/ASUS\/.m2\/repository\/org\/apache\/struts\/xwork\/xwork-core\/2.3.24\/xwork-core-2.3.24.jar&lt;com.opensymphony.xwork2(ActionSupport.class[ActionSupport" modifiers="33" timestamp="1463372098775"/>
+<typeInfo handle="=bos-web/C:\/Users\/ASUS\/.m2\/repository\/org\/apache\/struts\/xwork\/xwork-core\/2.3.24\/xwork-core-2.3.24.jar&lt;com.opensymphony.xwork2(ModelDriven.class[ModelDriven" modifiers="1537" timestamp="1463372098775"/>
+<typeInfo handle="=bos-web/C:\/Users\/ASUS\/.m2\/repository\/org\/springframework\/spring-context\/4.2.4.RELEASE\/spring-context-4.2.4.RELEASE.jar&lt;org.springframework.ui(Model.class[Model" modifiers="1537" timestamp="1463371805412"/>
+<typeInfo handle="=bos-dao/src\/main\/java&lt;com.itheima.bos.dao.base.impl{BaseDaoImpl.java[BaseDaoImpl" modifiers="1" timestamp="1543970042238"/>
+<typeInfo handle="=bos-dao/src\/main\/java&lt;com.itheima.bos.dao{IUserDao.java[IUserDao" modifiers="513" timestamp="1543413195803"/>
+<typeInfo handle="=bos-dao/src\/main\/java&lt;com.itheima.bos.dao.base{IBaseDao.java[IBaseDao" modifiers="513" timestamp="1543969969839"/>
+</typeInfoHistroy>

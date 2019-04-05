@@ -1,0 +1,22 @@
+package com.itheima.domain;
+
+import java.util.Date;
+
+/**
+* @author Pandy
+* @version 2018年11月21日 下午9:18:33
+*
+*/
+public class Order {
+	private String oid;//该订单的订单号
+	private Date ordertime;//下单的时间
+	private double total;//该订单的总金额
+	private int state;//订单的支付状态 1代表已经付款 0代表还未付款
+	//注意当前的登录者  与收货人可能不是一个人
+	private String address;//收货地址
+	private String name;//收货人
+	private String telephone;//收货人电话
+	
+	private User user;//该订单属于哪个用户
+	
+}

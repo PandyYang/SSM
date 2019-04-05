@@ -1,0 +1,51 @@
+package pandy.work.bos.dao.base.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+
+import pandy.work.bos.dao.base.IBaseDao;
+
+/**
+ * 持久层通用实现
+ * hibernateDaoSupport继承之后可以获取一个模板对象 就能够进行增删改查
+ * @author Pandy
+ *	2018年10月20日
+ * @param <T>
+ */
+public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
+	//代表的是某个实体的类型
+	private Class<T> entityClass;
+	public void save(T entity) {
+		this.getHibernateTemplate().save(entity);
+
+	}
+
+	
+	public void delete(T entity) {
+		this.getHibernateTemplate().delete(entity);
+
+	}
+
+	
+	public void update(T entity) {
+		this.getHibernateTemplate().update(entity);
+
+	}
+
+	
+	public T findById(Serializable id) {
+		//entityClass是一个运行时才能进行动态确定的类
+		return this.getHibernateTemplate().get(entityClass, id);
+		
+	}
+
+	
+	public List<T> findAll() {
+		String sql="from " + entityClass.getSimpleName();
+		return (List<T>) this.getHibernateTemplate().find(sql);
+	}
+
+}

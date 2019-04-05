@@ -1,0 +1,9 @@
+package pandy.work.bos.service;
+
+import pandy.work.bos.domain.User;
+
+public interface IUserService {
+
+	User login(User model);
+
+}

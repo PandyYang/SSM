@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 配置动态方法调用的常量 
+		默认是关闭状态，要设置为true
+	-->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+	<package name="dynamic" namespace="/dynamic" extends="struts-default">
+		<!-- 动态方法调用方式：通配符的方式
+			使用{1}取出第一个星号统配的内容
+		 -->
+		<action name="Demo1Action_*" class="pandy.test.b_dynamic.Demo1Action" method="{1}">
+			<result name="success">/hello.jsp</result>
+		</action>
+		
+		<!-- <action name="Demo1Action_delete" class="pandy.test.b_dynamic.Demo1Action"
+		 method="delete">
+			<result name=""></result>
+		</action>
+		<action name="Demo1Action_update" class="pandy.test.b_dynamic.Demo1Action"
+		 method="update">
+			<result name=""></result>
+		</action>
+		<action name="Demo1Action_find" class="pandy.test.b_dynamic.Demo1Action"
+		 method="find">
+			<result name=""></result>
+		</action>
+	 -->
+	</package>
+</struts>

@@ -1,0 +1,127 @@
+package com.itheima.bos.web.action;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import com.itheima.bos.domain.Region;
+import com.itheima.bos.domain.Subarea;
+import com.itheima.bos.service.ISubareaService;
+import com.itheima.bos.utils.FileUtils;
+import com.itheima.bos.web.action.base.BaseAction;
+@Controller
+@Scope("prototype")
+public class SubareaAction extends BaseAction<Subarea> {
+	@Resource
+	private ISubareaService subareaService;
+	/*
+	 * 添加分区
+	 * */
+	public String add() {
+		subareaService.save(model);
+		//因为执行完保存之后 我希望看见页面刷新 展示保存的数据
+		return LIST;
+	}
+	/*
+	 * 分页查询
+	 * */
+	public String pageQuery() {
+		DetachedCriteria dc = pageBean.getDetachedCriteria();
+		//动态添加过滤条件
+		String addresskey = model.getAddresskey();
+		if(StringUtils.isNotBlank(addresskey)) {
+			//添加过滤条件 根据地址关键字 模糊查询
+			dc.add(Restrictions.like(addresskey, "%"+addresskey+"%"));
+		}
+		
+		
+		Region region = model.getRegion();
+		if(region!=null) {
+			String province = region.getProvince();
+			String city = region.getCity();
+			String district = region.getDistrict();
+			dc.createAlias("region", "r");//使用别名 参数1:分区对象中关联的区域对象属性名称
+			if(StringUtils.isNotBlank(province)) {
+				//添加过滤条件根据 根据省份进行模糊查询---多表关联查询 使用别名方式实现
+				dc.add(Restrictions.like("r.province", "%"+province+"%"));
+			}
+			if(StringUtils.isNotBlank(city)) {
+				//进行市区查询
+				dc.add(Restrictions.like("r.city", "%"+city+"%"));
+			}
+			if(StringUtils.isNotBlank(district)) {
+				dc.add(Restrictions.like("r.district", "%"+district+"%"));
+			}
+		}
+		subareaService.pageQuery(pageBean);
+		this.java2Json(pageBean, new String[] {"currentPage","detachedCriteria","pageSize","decidezone","subareas"});
+		return NONE;
+	}
+	/*
+	 * 分区数据导出功能
+	 * 
+	 * */
+	public String exportXls() throws IOException {
+		//1.查询所有的分区数据
+		List<Subarea> list = subareaService.findAll();
+		//2.使用POI将数据写到Excel中
+		HSSFWorkbook workbook = new HSSFWorkbook();
+			//创建一个标签页 --- 为了对应excel中的格式
+		HSSFSheet sheet = workbook.createSheet("分区数据");
+			//创建标题行 ---出现分区的号 位置信息
+		sheet.createRow(0);
+			//创建标题行
+		HSSFRow headRow = sheet.createRow(0);
+			//创建单元格
+		headRow.createCell(0).setCellValue("分区编号");
+		headRow.createCell(1).setCellValue("开始编号");
+		headRow.createCell(2).setCellValue("结束编号");
+		headRow.createCell(3).setCellValue("位置信息");
+		headRow.createCell(4).setCellValue("省市区");
+		for(Subarea subarea:list) {
+			HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum());
+			dataRow.createCell(0).setCellValue(subarea.getId());
+			dataRow.createCell(1).setCellValue(subarea.getStartnum());
+			dataRow.createCell(2).setCellValue(subarea.getEndnum());
+			dataRow.createCell(3).setCellValue(subarea.getPosition());
+			dataRow.createCell(4).setCellValue(subarea.getRegion().getName());
+		}
+		//3.使用输出流进行文件的下载
+		ServletOutputStream out = ServletActionContext.getResponse().getOutputStream();
+			//注意要是在上一步结束 下载可以完成 但是文件名会是路径名 后缀是相应的.action
+				//设置保存的文件类型
+		//ServletActionContext.getResponse().setContentType("application/vnd.ms-excel");
+				//动态获取字符串
+		String filename="分区数据.xls";
+		String contentType = ServletActionContext.getServletContext().getMimeType(filename);
+		ServletActionContext.getResponse().setContentType(contentType);
+				//第一个参数是文件名 第二个参数是浏览器的类型 User-Agent
+		String agent = ServletActionContext.getRequest().getHeader("User-Agent");
+		FileUtils.encodeDownloadFilename(filename, agent);
+				//设置保存的文件名
+		ServletActionContext.getResponse().setHeader("content-disposition", "attachment;filename="+filename);
+		
+		
+		workbook.write(out);
+		return NONE;
+	}
+	/*
+	 * 获取未关联到定区的分区 并关联json数据
+	 * */
+	public String listajax() {
+		List<Subarea> list = subareaService.findListNotAssociation();
+		return NONE;
+	}
+}

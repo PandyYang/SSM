@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd ">
+
+<bean name="userServiceTarget" class="pandy.test.c_service.UserServiceImpl"></bean>
+<!-- 通知对象的名称 -->
+<bean name="myAdvice" class="pandy.test.d_springaop.MyAdvice"></bean>
+<aop:config>
+	<aop:pointcut expression="execution(public void pandy.test.c_service.UserServiceImpl.save())" id="pc"/>
+	<aop:aspect ref="myAdvice">
+		<aop:before method="before" pointcut-ref="pc"/>
+		<aop:after-returning method="afterReturning" pointcut-ref="pc"/>
+		<aop:around method="around" pointcut-ref="pc"/>
+		<aop:after-throwing method="afterException" pointcut-ref="pc"/>
+		<aop:after method="after" pointcut-ref="pc"/>
+	</aop:aspect>
+</aop:config>
+</beans>
